@@ -1,7 +1,7 @@
 class window.AppView extends Backbone.View
 
   template: _.template '
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
+    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button><button class="reset-button">Play Again!</button>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
   '
@@ -13,7 +13,10 @@ class window.AppView extends Backbone.View
     "click .stand-button": -> 
       if !window.busted
         @model.get('playerHand').stand()
-
+    "click .reset-button": ->
+      @model.get('playerHand').newHand() 
+      @model.get('dealerHand').newHand()
+      @render
   initialize: -> @render()
 
   render: ->

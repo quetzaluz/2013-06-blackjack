@@ -6,6 +6,31 @@ class window.Hand extends Backbone.Collection
 
   hit: -> @add(@deck.pop()).last()
 
+  stand: -> 
+    console.log 'Called Stand'
+
+  newHand: -> 
+    @resetHand()
+    @deck.shuffleCards()
+    window.busted = false
+    if @isDealer
+      @add(@deck.pop().flip())
+      @add(@deck.pop())
+    else 
+      @hit()
+      @hit()
+
+  resetHand: ->
+    # remove from hand, add to deck
+    for card in @models
+      @deck.add(@pop().set 'revealed', true)
+
+  dealerTurn: ->
+    if @isDealer
+      console.log "Dealer Turn"
+    if not @isDealer
+      console.log "Error?"
+
   scores: ->
     # The scores are an array of potential scores.
     # Usually, that array contains one element. That is the only score.
