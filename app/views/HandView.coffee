@@ -16,5 +16,5 @@ class window.HandView extends Backbone.View
       new CardView(model: card).$el
     if @collection.scores()[0] > 21
         @$('.score').text("BUSTED: #{ @collection.scores()[0] }").css(color: 'red')
-        @$('.hit-button').hide()
+        window.busted = true;
     else @$('.score').text @collection.scores()[0]
