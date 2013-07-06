@@ -5,8 +5,16 @@ describe 'deck', ->
   beforeEach ->
     deck = new Deck()
 
-  it "constructor should create a card collection", ->
+  it "should create a card collection with 52 cards", ->
     expect(deck.length).toBe 52
+
+  
+  it "should deal hands with two cards in each hand", ->
+    expect(deck.length).toBe 52
+    playerHand = deck.dealPlayer()
+    expect(deck.length).toBe 50
+    dealerHand = deck.dealDealer()
+    expect(deck.length).toBe 48
 
   describe 'hit', ->
     it "should give the last card from the deck", ->
