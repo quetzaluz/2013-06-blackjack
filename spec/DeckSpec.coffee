@@ -7,14 +7,17 @@ describe 'deck', ->
 
   it "should create a card collection with 52 cards", ->
     expect(deck.length).toBe 52
-
   
   it "should deal hands with two cards in each hand", ->
     expect(deck.length).toBe 52
-    playerHand = deck.dealPlayer()
+    expect(deck.dealPlayer().length).toBe 2
     expect(deck.length).toBe 50
-    dealerHand = deck.dealDealer()
+    expect(deck.dealDealer().length).toBe 2
     expect(deck.length).toBe 48
+
+  it "should have a shuffleCards method", ->
+    shuffledDeck = deck.shuffleCards()
+    expect(deck.models).not.toEqual(shuffledDeck.models)
 
   describe 'hit', ->
     it "should give the last card from the deck", ->
