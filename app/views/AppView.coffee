@@ -2,6 +2,7 @@ class window.AppView extends Backbone.View
 
   template: _.template '
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button><button class="reset-button">Play Again!</button>
+    <div class="score-board">Player Score: <span class="player-score">0</span>Dealer Score: <span class="dealer-score">0</span></div>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
   '

@@ -6,12 +6,13 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     @set 'turn', false
-    @set 'gameOver', false
+    @set 'gameOver', false #when setting to something other than false, string denoting winner
 
     @on 'change:gameOver', =>
       $('.covered').removeClass('covered')
       if @get('dealerHand').scores()[0] <= 21
         $('.dealer-hand-container').find('.score').text @get('dealerHand').scores()[0]
+      $(".#{@get 'gameOver'}-score").text(parseInt($(".#{@get 'gameOver'}-score").text()) + 1 )
 
     @get('playerHand').on 'turn', (isDealer) =>
     	if !isDealer 
@@ -21,10 +22,10 @@ class window.App extends Backbone.Model
 
     @get('playerHand').on 'busted', =>
       alert 'Player busted! The Dealer Has Won!'
-      @set 'gameOver', true
+      @set 'gameOver', 'dealer'
     @get('dealerHand').on 'busted', =>
       alert 'Dealer busted! You Have Won!'
-      @set 'gameOver', true
+      @set 'gameOver', 'player'
     @on 'newGame', ->
       @set 'gameOver', false
       @set 'turn', false
@@ -34,11 +35,10 @@ class window.App extends Backbone.Model
     @get('dealerHand').on 'findWinner', =>
       if 21 >= @get('dealerHand').scores()[0] > @get('playerHand').scores()[0]
         alert "The Dealer Has Won!"
-        @set 'gameOver', true
+        @set 'gameOver', 'dealer'
       if @get('dealerHand').scores()[0] < @get('playerHand').scores()[0]
         alert "You Have won!"
-        @set 'gameOver', true
+        @set 'gameOver', 'player'
       if @get('dealerHand').scores()[0] is @get('playerHand').scores()[0]
         alert "It's a tie!"
         @set 'gameOver', true
-

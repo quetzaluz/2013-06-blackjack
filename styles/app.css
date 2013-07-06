@@ -14,3 +14,14 @@
 .hand {
   overflow: auto;
 }
+
+.score-board {
+  margin-top: 8px;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.score-board span {
+  display: inline-block;
+  margin: 0 20px 0 10px;
+}
