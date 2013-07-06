@@ -12,7 +12,7 @@ class window.Hand extends Backbone.Collection
   newHand: -> 
     @resetHand()
     @deck.shuffleCards()
-    window.busted = false
+    @trigger('newGame') #later pass in params for score keeping
     if @isDealer
       @add(@deck.pop().flip())
       @add(@deck.pop())
