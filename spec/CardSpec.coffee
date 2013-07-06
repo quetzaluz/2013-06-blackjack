@@ -1,5 +1,9 @@
-describe "deck constructor", ->
+describe "card", ->
+  card = null
 
-  it "should create a card collection", ->
-    collection = new Deck()
-    expect(collection.length).toBe 52
+  beforeEach ->
+    card = new Card rank:0, suit:2
+
+  it "should have a rank and suit", ->    
+    expect(card.get 'suitName').toEqual 'Clubs'
+    expect(card.get 'rankName').toEqual 'King'
