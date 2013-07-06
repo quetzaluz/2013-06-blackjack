@@ -14,7 +14,6 @@ class window.HandView extends Backbone.View
     @$el.html @template @collection
     @$el.append @collection.map (card) ->
       new CardView(model: card).$el
+    @$('.score').text @collection.displayScore()
     if @collection.scores()[0] > 21
-        @$('.score').text("BUSTED: #{ @collection.scores()[0] }").css(color: 'red')
-        @collection.trigger('busted');
-    else @$('.score').text @collection.scores()[0]
+      @collection.trigger('busted');

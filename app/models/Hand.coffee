@@ -12,7 +12,6 @@ class window.Hand extends Backbone.Collection
   newHand: -> 
     @resetHand()
     @deck.shuffleCards()
-    @trigger('newGame') #later pass in params for score keeping
     if @isDealer
       @add(@deck.pop().flip())
       @add(@deck.pop())
@@ -43,6 +42,15 @@ class window.Hand extends Backbone.Collection
       memo or card.get('value') is 1
     , false
     score = @reduce (score, card) ->
-      score + if card.get 'revealed' then card.get 'value' else 0
+      score + card.get 'value'
     , 0
     if hasAce then [score, score + 10] else [score]
+
+  displayScore: ->
+    console.log
+    if @isDealer and @scores()[0] < 21
+      return "???"
+    else if not @isDealer and @scores()[0] < 21
+      return @scores()[0]
+    else if @scores()[0] > 21
+      return "BUSTED: #{ @scores()[0] }"

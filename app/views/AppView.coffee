@@ -14,9 +14,7 @@ class window.AppView extends Backbone.View
       if !@model.get('gameOver') and !@model.get('turn')
         @model.get('playerHand').stand()
     "click .reset-button": ->
-      @model.get('playerHand').newHand() 
-      @model.get('dealerHand').newHand()
-      @render
+      @model.trigger('newGame')
   initialize: -> @render()
 
   render: ->

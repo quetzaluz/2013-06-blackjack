@@ -10,21 +10,27 @@ class window.App extends Backbone.Model
 
     @on 'change:gameOver', =>
       $('.covered').removeClass('covered')
+      if @get('dealerHand').scores()[0] <= 21
+        $('.dealer-hand-container').find('.score').text @get('dealerHand').scores()[0]
 
     @get('playerHand').on 'turn', (isDealer) =>
     	if !isDealer 
         #detects that the player called the end of their turn
         @set 'turn', true
         @get('dealerHand').dealerTurn()
+
     @get('playerHand').on 'busted', =>
       alert 'Player busted! The Dealer Has Won!'
       @set 'gameOver', true
     @get('dealerHand').on 'busted', =>
       alert 'Dealer busted! You Have Won!'
       @set 'gameOver', true
-    @get('playerHand').on 'newGame', =>
+    @on 'newGame', ->
       @set 'gameOver', false
       @set 'turn', false
+      @get('playerHand').newHand()
+      @get('dealerHand').newHand()
+      @render()
     @get('dealerHand').on 'findWinner', =>
       if 21 >= @get('dealerHand').scores()[0] > @get('playerHand').scores()[0]
         alert "The Dealer Has Won!"
