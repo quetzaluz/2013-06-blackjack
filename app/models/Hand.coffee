@@ -7,7 +7,7 @@ class window.Hand extends Backbone.Collection
   hit: -> @add(@deck.pop()).last()
 
   stand: -> 
-    @trigger('stand')
+    @trigger('turn', @isDealer)
 
   newHand: -> 
     @resetHand()
@@ -28,6 +28,8 @@ class window.Hand extends Backbone.Collection
   dealerTurn: ->
     if @isDealer
       console.log "Dealer Turn"
+      @hit() if @scores()[0] < 17
+      @trigger('turn', @isDealer)
     if not @isDealer 
       console.log "Error! Player is trying to take DealerTurn"
 
