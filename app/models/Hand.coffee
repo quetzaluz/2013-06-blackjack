@@ -4,7 +4,11 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
 
-  hit: -> @add(@deck.pop()).last()
+  hit: -> 
+    @add(@deck.pop()).last()
+    unless @isDealer
+      @trigger('findWinner') 
+
 
   stand: -> 
     @trigger('turn', @isDealer)
