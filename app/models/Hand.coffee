@@ -31,6 +31,7 @@ class window.Hand extends Backbone.Collection
       @hit() if @scores()[0] < 17
       if @scores()[0] >= 17
         @trigger('findWinner') 
+      else @dealerTurn()
     if not @isDealer 
       console.log "Error! Player is trying to take DealerTurn"
 

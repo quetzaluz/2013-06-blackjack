@@ -7,19 +7,32 @@ class window.App extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
     @set 'turn', false
     @set 'gameOver', false
+
+    @on 'change:gameOver', =>
+      $('.covered').removeClass('covered')
+
     @get('playerHand').on 'turn', (isDealer) =>
     	if !isDealer 
         #detects that the player called the end of their turn
         @set 'turn', true
         @get('dealerHand').dealerTurn()
     @get('playerHand').on 'busted', =>
-      console.log 'Player busted!'
+      alert 'Player busted! The Dealer Has Won!'
       @set 'gameOver', true
     @get('dealerHand').on 'busted', =>
-      console.log 'Dealer busted!'
+      alert 'Dealer busted! You Have Won!'
       @set 'gameOver', true
     @get('playerHand').on 'newGame', =>
       @set 'gameOver', false
       @set 'turn', false
     @get('dealerHand').on 'findWinner', =>
-      console.log "Put method for finding winner here!"
+      if 21 >= @get('dealerHand').scores()[0] > @get('playerHand').scores()[0]
+        alert "The Dealer Has Won!"
+        @set 'gameOver', true
+      if @get('dealerHand').scores()[0] < @get('playerHand').scores()[0]
+        alert "You Have won!"
+        @set 'gameOver', true
+      if @get('dealerHand').scores()[0] is @get('playerHand').scores()[0]
+        alert "It's a tie!"
+        @set 'gameOver', true
+
