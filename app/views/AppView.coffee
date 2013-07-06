@@ -16,6 +16,8 @@ class window.AppView extends Backbone.View
         @model.get('playerHand').stand()
     "click .reset-button": ->
       @model.trigger('newGame')
+    "click .game-over": ->
+
   initialize: -> @render()
 
   render: ->
