@@ -30,7 +30,7 @@ class window.App extends Backbone.Model
       @set 'turn', false
       @get('playerHand').newHand()
       @get('dealerHand').newHand()
-      @render()
+
     @get('dealerHand').on 'findWinner', =>
       if 21 >= @get('dealerHand').scores()[0] > @get('playerHand').scores()[0]
         alert "The Dealer Has Won!"
