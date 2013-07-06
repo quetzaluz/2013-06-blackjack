@@ -9,6 +9,7 @@ class window.App extends Backbone.Model
     @set 'gameOver', false #when setting to something other than false, string denoting winner
 
     @on 'change:gameOver', =>
+      $('.covered img').css 'display', 'inline-block'
       $('.covered').removeClass 'covered'
       if @get('dealerHand').scores()[0] <= 21
         $('.dealer-hand-container').find('.score').text @get('dealerHand').scores()[0]

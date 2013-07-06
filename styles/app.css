@@ -3,12 +3,16 @@
   border: solid 1px black;
   width: 100px;
   border-radius: 5px;
-  height: 140px;
+  height: 146px;
   margin-right: 20px;
 }
 
 .covered {
   background-color: black;
+}
+
+.covered img {
+  display: none;
 }
 
 .hand {
