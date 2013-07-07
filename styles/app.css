@@ -1,3 +1,8 @@
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+}
+
 .card {
   float: left;
   border: solid 1px black;
@@ -31,7 +36,7 @@
 
 .score-board span {
   display: inline-block;
-  margin: 0 20px 0 10px;
+  width: 125px;
 }
 
 .winner {
@@ -57,8 +62,6 @@
 }
 
 .game-over span {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-  font-weight: 300;
   font-size: 48px;
   display: inline-block;
   vertical-align: middle;

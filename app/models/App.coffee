@@ -8,9 +8,14 @@ class window.App extends Backbone.Model
     @set 'turn', false
     @set 'gameOver', false #when setting to something other than false, string denoting winner
     @set 'chips', 200
+    @set 'bet', 0
 
     @on 'change:chips', =>
       $('.player-chips').text @get 'chips'
+
+    @on 'change:bet', =>
+      $('.player-bet').text @get 'bet'
+
 
     @on 'change:gameOver', =>
       $('.covered img').css 'display', 'inline-block'
@@ -26,6 +31,8 @@ class window.App extends Backbone.Model
         @get('dealerHand').dealerTurn()
 
     @on 'newGame', ->
+      @set 'bet', 0
+      $('.bet-amount').val('')
       @set 'gameOver', false
       @set 'turn', false
       @get('playerHand').newHand()
