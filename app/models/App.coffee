@@ -7,6 +7,10 @@ class window.App extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
     @set 'turn', false
     @set 'gameOver', false #when setting to something other than false, string denoting winner
+    @set 'chips', 200
+
+    @on 'change:chips', =>
+      $('.player-chips').text @get 'chips'
 
     @on 'change:gameOver', =>
       $('.covered img').css 'display', 'inline-block'

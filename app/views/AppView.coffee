@@ -1,11 +1,11 @@
 class window.AppView extends Backbone.View
 
-  template: _.template '
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button><button class="reset-button">Play Again!</button>
-    <div class="score-board">Player Score: <span class="player-score">0</span>Dealer Score: <span class="dealer-score">0</span></div>
-    <div class="player-hand-container"></div>
-    <div class="dealer-hand-container"></div>
-  '
+  template: _.template "
+    <button class='hit-button'>Hit</button> <button class='stand-button'>Stand</button><button class='reset-button'>Play Again!</button><form class='bet-form'><input type='text'></input></form><button class='place-bet'>Bet!</button>
+    <div class='score-board'>Player Score: <span class='player-score'>0</span>Dealer Score: <span class='dealer-score'>0</span>Player Chips: <span class='player-chips'><%= chips %></span></div>
+    <div class='player-hand-container'></div>
+    <div class='dealer-hand-container'></div>
+  "
 
   events:
     "click .hit-button": -> 
@@ -22,6 +22,6 @@ class window.AppView extends Backbone.View
 
   render: ->
     @$el.children().detach()
-    @$el.html @template()
+    @$el.html @template({chips: @model.get 'chips'})
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el

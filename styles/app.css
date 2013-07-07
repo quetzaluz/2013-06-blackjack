@@ -1,10 +1,14 @@
 .card {
   float: left;
   border: solid 1px black;
-  width: 100px;
+  width: 101px;
   border-radius: 5px;
   height: 146px;
   margin-right: 20px;
+}
+
+.bet-form {
+  display: inline-block;
 }
 
 .covered {
