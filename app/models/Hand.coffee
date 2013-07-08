@@ -30,7 +30,6 @@ class window.Hand extends Backbone.Collection
 
   dealerTurn: ->
     if @isDealer
-      console.log "Dealer Turn"
       @hit() if @scores()[0] < 17
       if @scores()[0] >= 17
         @trigger('findWinner') 

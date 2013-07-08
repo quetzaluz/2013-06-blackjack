@@ -2,9 +2,6 @@ class window.CardView extends Backbone.View
 
   className: 'card'
 
-  #OLD TEMPLATE
-  #template: _.template '<%= rankName %> of <%= suitName %>'
-
   cardImg: ->
     thisTag = "#{rankName} of #{suitName}"
 

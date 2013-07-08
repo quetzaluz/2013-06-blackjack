@@ -16,14 +16,19 @@ class window.App extends Backbone.Model
     @on 'change:bet', =>
       $('.player-bet').text @get 'bet'
 
-
     @on 'change:gameOver', =>
+      if @get('gameOver') is 'player'
+        console.log('player should win chips!')
+        @set 'chips', (parseInt(@get 'chips') + (parseInt(@get 'bet')*2)) 
+      if @get('gameOver') is 'dealer'
+        console.log('player should lose chips!')
+        @set 'chips', (parseInt(@get 'chips') - parseInt(@get 'bet')) 
       $('.covered img').css 'display', 'inline-block'
       $('.covered').removeClass 'covered'
       if @get('dealerHand').scores()[0] <= 21
         $('.dealer-hand-container').find('.score').text @get('dealerHand').scores()[0]
       $(".#{@get 'gameOver'}-score").text(parseInt($(".#{@get 'gameOver'}-score").text()) + 1 )
-
+    
     @get('playerHand').on 'turn', (isDealer) =>
     	if !isDealer 
         #detects that the player called the end of their turn

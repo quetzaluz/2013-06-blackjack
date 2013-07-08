@@ -10,9 +10,8 @@ class window.AppView extends Backbone.View
 
   events:
     "click .bet-button": ->
-      if parseInt($('.bet-amount').val()) >= 0
+      if parseInt(@model.get('chips'))>= parseInt($('.bet-amount').val()) >= 0
         @model.set('bet', parseInt($('.bet-amount').val()))
-
     "click .hit-button": -> 
       if !@model.get('gameOver') and !@model.get('turn')
         @model.get('playerHand').hit()
