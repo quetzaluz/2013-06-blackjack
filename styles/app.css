@@ -60,6 +60,13 @@ body {
   background-color: rgba(0, 255, 77, 0.6);
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FF4D, endColorstr=#00FF4D);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FF4D, endColorstr=#00FF4D)";
+  /* Disable text highlighting */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .game-over span {
