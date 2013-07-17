@@ -5,9 +5,9 @@ class window.App extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-    @set 'turn', false
-    @set 'gameOver', false #when setting to something other than false, string denoting winner
-    @set 'chips', 200
+    @set 'turn', false # false, 'dealer' (dealer's turn), 'player' (player's turn)
+    @set 'gameOver', false # false, 'dealer' (dealer is winner), 'player' (player is winner)
+    @set 'chips', 200 # default starting chips
     @set 'bet', 0
 
     @on 'change:chips', =>
@@ -18,10 +18,8 @@ class window.App extends Backbone.Model
 
     @on 'change:gameOver', =>
       if @get('gameOver') is 'player'
-        console.log('player should win chips!')
         @set 'chips', (parseInt(@get 'chips') + (parseInt(@get 'bet')*2)) 
       if @get('gameOver') is 'dealer'
-        console.log('player should lose chips!')
         @set 'chips', (parseInt(@get 'chips') - parseInt(@get 'bet')) 
       $('.covered img').css 'display', 'inline-block'
       $('.covered').removeClass 'covered'
@@ -29,10 +27,9 @@ class window.App extends Backbone.Model
         $('.dealer-hand-container').find('.score').text @get('dealerHand').scores()[0]
       $(".#{@get 'gameOver'}-score").text(parseInt($(".#{@get 'gameOver'}-score").text()) + 1 )
     
-    @get('playerHand').on 'turn', (isDealer) =>
-    	if !isDealer 
-        #detects that the player called the end of their turn
-        @set 'turn', true
+    @get('playerHand').on 'turn', (turnCalled) =>
+    	if turnCalled is 'dealer'
+        @set 'turn', 'dealer'
         @get('dealerHand').dealerTurn()
 
     @on 'newGame', ->

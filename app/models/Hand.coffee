@@ -6,12 +6,13 @@ class window.Hand extends Backbone.Collection
 
   hit: -> 
     @add(@deck.pop()).last()
+    @trigger  'turn', 'player'
     unless @isDealer
       @trigger('findWinner') 
 
 
   stand: -> 
-    @trigger('turn', @isDealer)
+    @trigger 'turn', 'dealer'
 
   newHand: -> 
     @resetHand()
