@@ -60,6 +60,8 @@ class window.CardView extends Backbone.View
     'King of Clubs' : './svg/king_of_clubs2.svg'
 
   imgURL: ->
+   if !@imgLookup["#{@model.attributes.rankName} of #{@model.attributes.suitName}"]
+    console.log "#{@model.attributes.rankName} of #{@model.attributes.suitName}"
    @imgLookup["#{@model.attributes.rankName} of #{@model.attributes.suitName}"] if @model
 
   initialize: ->
