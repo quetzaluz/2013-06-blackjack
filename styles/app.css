@@ -17,7 +17,8 @@ body {
 }
 
 .covered {
-  background-color: black;
+  /* Card pattern designed with the help of http://www.patternify.com/ */
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAfklEQVQYV2P8z8r6v0xAgKH79WsGELjIwwOm9b98AdOloqIMXR8+MDACGf+RFQEVMEI1/EdWDBL8DzMJpghsFMR0uGKwQpB1yCYt4eQEOQXFZEaoLrggzDR0xSgKQR4DKbzEzg7zENwADKtBikEK0T1FvGeIDh6QZ6AOxxvgAKEIbSNU/r5rAAAAAElFTkSuQmCC) repeat;
 }
 
 .covered img {
